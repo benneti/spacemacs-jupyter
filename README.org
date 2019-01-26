@@ -1,0 +1,40 @@
+#+TITLE: jupyter layer
+
+# The maximum height of the logo should be 200 pixels.
+[[img/jupyter.png]]
+
+# TOC links should be GitHub style anchors.
+* Table of Contents                                        :TOC_1_gh:noexport:
+- [[#todos][TODOs]]
+- [[#description][Description]]
+- [[#install][Install]]
+- [[#key-bindings][Key bindings]]
+
+* TODOs
+
+** TODO Depend on spacemacs layer to provide simple-httpd and websocket
+** TODO keybindings to start repl
+
+* Description
+Spacemacs layer for https://github.com/dzop/emacs-jupyter
+
+** Features:
+  - Interactive REPL
+  - Jupyter kernel for org-mode
+
+* Install
+To use this configuration layer, add it to your =~/.spacemacs=. You will need to
+add =jupyter= to the existing =dotspacemacs-configuration-layers= list in this
+file.
+
+* Key bindings
+
+| Key Binding | Description    |
+|-------------+----------------|
+| ~SPC x x x~ | Does thing01   |
+
+# Use GitHub URLs if you wish to link a Spacemacs documentation file or its heading.
+# Examples:
+# [[https://github.com/syl20bnr/spacemacs/blob/master/doc/VIMUSERS.org#sessions]]
+# [[https://github.com/syl20bnr/spacemacs/blob/master/layers/%2Bfun/emoji/README.org][Link to Emoji layer README.org]]
+# If space-doc-mode is enabled, Spacemacs will open a local copy of the linked file.
