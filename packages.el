@@ -2,7 +2,7 @@
 ;;
 ;; Copyright (c) 2012-2018 Sylvain Benner & Contributors
 ;;
-;; Author: Benedikt Tissot <benneti@bennetis-xps>
+;; Author: Benedikt Tissot <benedikt.tissot@googlemail.com>
 ;; URL: https://github.com/syl20bnr/spacemacs
 ;;
 ;; This file is not part of GNU Emacs.
@@ -33,29 +33,29 @@
   '(zmq
     simple-httpd
     websocket
-    (emacs-jupyter :location (recipe
-                              :fetcher github
-                              :repo "dzop/emacs-jupyter"))))
+    (jupyter :location (recipe
+                        :fetcher github
+                        :repo "dzop/emacs-jupyter"))))
 
 (defun jupyter/init-zmq ()
-  (use-package zmq
-    :defer t
-    :ensure nil))
+  (use-package zmq))
 
 (defun jupyter/init-simple-httpd ()
-  (use-package simple-httpd
-    :defer t
-    :ensure nil))
+  (use-package simple-httpd))
 
 (defun jupyter/init-websocket ()
-  (use-package websocket
-    :defer t
-    :ensure nil))
+  (use-package websocket))
 
-(defun jupyter/init-emacs-jupyter ()
-  (use-package emacs-jupyter
+(defun jupyter/init-jupyter ()
+  (use-package jupyter
     :defer t
-    :ensure nil
-    :after '(emacs-zmq websocket simple-httpd)))
+    :init
+    (spacemacs/set-leader-keys
+      "ajr" 'jupyter-run-repl
+      "ajc" 'jupyter-connect-repl)
+    :config
+    (evilified-state-evilify-map 'jupyter-repl-mode-map
+      :mode jupyter-repl-mode)
+    ))
 
 ;;; packages.el ends here

@@ -12,8 +12,13 @@
 
 * TODOs
 
-** TODO Depend on spacemacs layer to provide simple-httpd and websocket
-** TODO keybindings to start repl
+** TODO Depend on spacemacs layer to provide simple-httpd and websocket?
+** DONE keybindings to start repl
+   CLOSED: [2019-01-27 So 20:36]
+** DONE evilify repl
+   CLOSED: [2019-01-27 So 20:36]
+** TODO more keybindings for repl
+** TODO make keybinding start repl interactive (selection of kernel)
 
 * Description
 Spacemacs layer for https://github.com/dzop/emacs-jupyter
