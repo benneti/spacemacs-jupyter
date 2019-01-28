@@ -1,9 +1,5 @@
 #+TITLE: jupyter layer
 
-# The maximum height of the logo should be 200 pixels.
-[[img/jupyter.png]]
-
-# TOC links should be GitHub style anchors.
 * Table of Contents                                        :TOC_1_gh:noexport:
 - [[#todos][TODOs]]
 - [[#description][Description]]
@@ -25,14 +21,31 @@ Spacemacs layer for https://github.com/dzop/emacs-jupyter
 
 ** Features:
   - Interactive REPL
-  - Jupyter kernel for org-mode
+  - Jupyter kernels support for =org-babel=
 
 * Install
 To use this configuration layer, add it to your =~/.spacemacs=. You will need to
 add =jupyter= to the existing =dotspacemacs-configuration-layers= list in this
 file.
 
+The jupyter package also provides integration with =org-babel= via =ob-jupyter=.
+To use the kernels in jupyter just add =(jupyter . t)= to your
+=org-babel-load-languages= list as the last element.
+Adding to the variable is sufficient as spacemacs provides a hook that loads it.
+
+An example would be adding
+#+BEGIN_SRC emacs-lisp
+(with-eval-after-load 'org
+  (setq org-babel-load-languages
+        (append org-babel-load-languages
+                '((latex . t)
+                  ;; jupyter has to be the last element
+                  (jupyter . t)))))
+#+END_SRC
+to your =dotspacemacs/user-config=.
+
 * Key bindings
+To start a REPL use ~SPC a j r~ and to connect to one ~SPC a j c~.
 
 | Key Binding | Description    |
 |-------------+----------------|
