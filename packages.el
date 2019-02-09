@@ -38,7 +38,6 @@
         :defer t
         :init
         (spacemacs/set-leader-keys
-          ;; TODO optimally this should behave like when called from helm
           "ajr" 'jupyter-run-repl
           "ajc" 'jupyter-connect-repl)
         :config
@@ -46,16 +45,16 @@
           (evilified-state-evilify-map 'jupyter-repl-mode-map
             :mode jupyter-repl-mode)
 
-          ;; TODO is this necessary?
-          (defun spacemacs//concat-leader (key)
-            (if dotspacemacs-major-mode-leader-key
-                (concat dotspacemacs-major-mode-leader-key key)
-              (concat "," key)))
-
+          (spacemacs/declare-prefix-for-mode 'jupyter-repl-mode
+            "mf" "file")
+          (spacemacs/declare-prefix-for-mode 'jupyter-repl-mode
+            "me" "eval")
+          (spacemacs/declare-prefix-for-mode 'jupyter-repl-mode
+            "mh" "history")
           ;; TODO not working
           (spacemacs/set-leader-keys-for-major-mode 'jupyter-repl-mode
-            "," 'jupyter-eval-line-or-region
-            "ee" 'jupyter-eval-line-or-region
+            ;; "," 'jupyter-eval-line-or-region ;; probably these functions should be called from source code
+            ;; "ee" 'jupyter-eval-line-or-region
             "ed" 'jupyter-eval-defun
             "eb" 'jupyter-eval-buffer
             "fl" 'jupyter-load-file
@@ -66,6 +65,6 @@
             "hN"  'jupyter-repl-history-previous
             "i" 'jupyter-inspect-at-point
             "sb" 'jupyter-repl-pop-to-buffer)))
-    (message "jupyter was not found on your path, scimax patches from scimax were not loaded")))
+    (message "jupyter was not found in your path, jupyter is not loaded")))
 
 ;;; packages.el ends here
