@@ -28,6 +28,8 @@ To use this configuration layer, add it to your =~/.spacemacs=. You will need to
 add =jupyter= to the existing =dotspacemacs-configuration-layers= list in this
 file.
 
+Additionally you need to have =jupyter= available in your =PATH=.
+
 The jupyter package also provides integration with =org-babel= via =ob-jupyter=.
 To use the kernels in jupyter just add =(jupyter . t)= to your
 =org-babel-load-languages= list as the last element.

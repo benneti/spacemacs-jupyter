@@ -30,21 +30,7 @@
 ;;; Code:
 
 (defconst jupyter-packages
-  '(zmq
-    simple-httpd
-    websocket
-    (jupyter :location (recipe
-                        :fetcher github
-                        :repo "dzop/emacs-jupyter"))))
-
-(defun jupyter/init-zmq ()
-  (use-package zmq))
-
-(defun jupyter/init-simple-httpd ()
-  (use-package simple-httpd))
-
-(defun jupyter/init-websocket ()
-  (use-package websocket))
+  '(jupyter))
 
 (defun jupyter/init-jupyter ()
   (if (executable-find "jupyter")
