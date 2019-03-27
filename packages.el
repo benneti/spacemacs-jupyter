@@ -67,4 +67,9 @@
             "sb" 'jupyter-repl-pop-to-buffer)))
     (message "jupyter was not found in your path, jupyter is not loaded")))
 
+(defun jupyter/post-init-company ()
+  (spacemacs|add-company-backends
+    :backends company-capf
+    :modes jupyter-repl-mode))
+
 ;;; packages.el ends here
