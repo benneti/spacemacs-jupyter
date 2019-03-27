@@ -30,16 +30,22 @@
 ;;; Code:
 
 (defconst jupyter-packages
-  '(jupyter))
+  '(
+    company
+    jupyter
+    ))
 
 (defun jupyter/init-jupyter ()
   (if (executable-find "jupyter")
       (use-package jupyter
         :defer t
         :init
-        (spacemacs/set-leader-keys
-          "ajr" 'jupyter-run-repl
-          "ajc" 'jupyter-connect-repl)
+        ;; (progn
+          (spacemacs/set-leader-keys
+            "ajj" 'jupyter-run-repl
+            "ajr" 'jupyter-run-repl
+            "ajc" 'jupyter-connect-repl)
+          ;; (spacemacs|add-company-backends :backends company-capf :modes jupyter-repl-mode))
         :config
         (progn
           (evilified-state-evilify-map 'jupyter-repl-mode-map
@@ -68,8 +74,6 @@
     (message "jupyter was not found in your path, jupyter is not loaded")))
 
 (defun jupyter/post-init-company ()
-  (spacemacs|add-company-backends
-    :backends company-capf
-    :modes jupyter-repl-mode))
+  (spacemacs|add-company-backends :backends company-capf :modes jupyter-repl-mode))
 
 ;;; packages.el ends here
