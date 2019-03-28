@@ -17,6 +17,7 @@ Spacemacs layer for https://github.com/dzop/emacs-jupyter
 ** Features:
   - Interactive REPL
   - Jupyter kernels support for =org-babel=
+  - auto-completion using =Company= in REPL and =org-src-blocks=
 
 * Install
 To use this configuration layer, add it to your =~/.spacemacs=. You will need to
@@ -28,7 +29,8 @@ Additionally you need to have =jupyter= available in your =PATH=.
 The jupyter package also provides integration with =org-babel= via =ob-jupyter=.
 To use the kernels in jupyter just add =(jupyter . t)= to your
 =org-babel-load-languages= list as the last element.
-Adding to the variable is sufficient as spacemacs provides a hook that loads it.
+If no auto-completion is used adding to the variable is sufficient as spacemacs
+provides a hook that loads it the first time =org-mode= is started.
 
 An example would be adding
 #+BEGIN_SRC emacs-lisp
@@ -37,12 +39,15 @@ An example would be adding
         (append org-babel-load-languages
                 '((latex . t)
                   ;; jupyter has to be the last element
-                  (jupyter . t)))))
+                  (jupyter . t))))
+  ;; Execute load languages once, else autocompletion will only work in the
+  ;; second org file one opens
+  (spacemacs//org-babel-do-load-languages))
 #+END_SRC
 to your =dotspacemacs/user-config=.
 
 * Key bindings
-To start a REPL use ~SPC a j r~ and to connect to one ~SPC a j c~.
+To start a REPL use ~SPC a j j~ or ~SPC a j r~ and to connect to one ~SPC a j c~.
 
 | Key Binding | Description    |
 |-------------+----------------|
