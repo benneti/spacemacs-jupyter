@@ -10,6 +10,12 @@
 
 ** TODO Keybindings to send code to repl for compatible modes
 ** TODO more keybindings for repl
+** TODO Change spacemacs load babel languages function such that it first changes the order to make sure jupyter is the last element
+** TODO Add this at a fitting position
+#+BEGIN_SRC emacs-lisp
+(spacemacs|use-package-add-hook org
+  :post-config (add-to-list 'org-babel-load-languages ((jupyter . t))))
+#+END_SRC
 
 * Description
 Spacemacs layer for https://github.com/dzop/emacs-jupyter
