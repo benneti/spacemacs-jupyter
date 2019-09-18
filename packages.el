@@ -42,15 +42,14 @@
         :init
         ;; (progn
           (spacemacs/set-leader-keys
-            "ajj" 'jupyter-run-repl
+            "aja" 'jupyter-repl-associate-buffer
+            "ajc" 'jupyter-connect-repl
             "ajr" 'jupyter-run-repl
-            "ajc" 'jupyter-connect-repl)
+            "ajs" 'jupyter-server-list-kernels
+            )
           ;; (spacemacs|add-company-backends :backends company-capf :modes jupyter-repl-mode))
         :config
         (progn
-          (evilified-state-evilify-map 'jupyter-repl-mode-map
-            :mode jupyter-repl-mode)
-
           (spacemacs/declare-prefix-for-mode 'jupyter-repl-mode
             "mf" "file")
           (spacemacs/declare-prefix-for-mode 'jupyter-repl-mode
@@ -70,7 +69,20 @@
             "hn"  'jupyter-repl-history-next
             "hN"  'jupyter-repl-history-previous
             "i" 'jupyter-inspect-at-point
-            "sb" 'jupyter-repl-pop-to-buffer)))
+            "sb" 'jupyter-repl-pop-to-buffer)
+
+          (when (eq dotspacemacs-editing-style 'vim)
+            (evil-define-key '(insert normal) jupyter-repl-mode-map
+              (kbd "C-j") 'jupyter-repl-history-next
+              (kbd "C-k") 'jupyter-repl-history-previous
+              (kbd "C-l") 'jupyter-repl-clear-cells
+              (kbd "M-j") 'jupyter-repl-forward-cell
+              (kbd "M-k") 'jupyter-repl-backward-cell
+              (kbd "C-s") 'jupyter-repl-scratch-buffer
+              (kbd "C-R") 'jupyter-repl-history-next-matching
+              (kbd "C-r") 'jupyter-repl-history-previous-matching))
+          ))
+
     (message "jupyter was not found in your path, jupyter is not loaded")))
 
 (defun jupyter/post-init-company ()
