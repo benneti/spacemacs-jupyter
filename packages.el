@@ -40,37 +40,21 @@
       (use-package jupyter
         :defer t
         :init
-        ;; (progn
+        (progn
           (spacemacs/set-leader-keys
             "aja" 'jupyter-repl-associate-buffer
             "ajc" 'jupyter-connect-repl
             "ajr" 'jupyter-run-repl
             "ajs" 'jupyter-server-list-kernels
             )
-          ;; (spacemacs|add-company-backends :backends company-capf :modes jupyter-repl-mode))
+          (spacemacs/set-leader-keys-for-major-mode 'jupyter-repl-mode
+            "i" 'jupyter-inspect-at-point
+            "l" 'jupyter-load-file
+            "s" 'jupyter-repl-scratch-buffer
+            "I" 'jupyter-repl-interrupt-kernel
+            "R" 'jupyter-repl-restart-kernel))
         :config
         (progn
-          (spacemacs/declare-prefix-for-mode 'jupyter-repl-mode
-            "mf" "file")
-          (spacemacs/declare-prefix-for-mode 'jupyter-repl-mode
-            "me" "eval")
-          (spacemacs/declare-prefix-for-mode 'jupyter-repl-mode
-            "mh" "history")
-          ;; TODO not working
-          (spacemacs/set-leader-keys-for-major-mode 'jupyter-repl-mode
-            ;; "," 'jupyter-eval-line-or-region ;; probably these functions should be called from source code
-            ;; "ee" 'jupyter-eval-line-or-region
-            "ed" 'jupyter-eval-defun
-            "eb" 'jupyter-eval-buffer
-            "fl" 'jupyter-load-file
-            "fs" 'jupyter-repl-scratch-buffer
-            "fb" 'jupyter-repl-pop-to-buffer
-            "kr" 'jupyter-repl-restart-kernel
-            "hn"  'jupyter-repl-history-next
-            "hN"  'jupyter-repl-history-previous
-            "i" 'jupyter-inspect-at-point
-            "sb" 'jupyter-repl-pop-to-buffer)
-
           (when (eq dotspacemacs-editing-style 'vim)
             (evil-define-key '(insert normal) jupyter-repl-mode-map
               (kbd "C-j") 'jupyter-repl-history-next
