@@ -33,6 +33,7 @@
   '(
     company
     jupyter
+    smartparens
     ))
 
 (defun jupyter/init-jupyter ()
@@ -70,5 +71,8 @@
 
 (defun jupyter/post-init-company ()
   (spacemacs|add-company-backends :backends company-capf :modes jupyter-repl-mode))
+
+(defun jupyter/post-init-smartparens ()
+  (add-hook 'jupyter-repl-mode-hook 'smartparens-mode))
 
 ;;; packages.el ends here
