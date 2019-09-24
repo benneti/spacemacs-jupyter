@@ -41,10 +41,17 @@
         :defer t
         :init
         (progn
+          (spacemacs/declare-prefix "aj" "jupyter")
+          (spacemacs/declare-prefix "ajo" "org-jupyter")
           (spacemacs/set-leader-keys
             "aja" 'jupyter-repl-associate-buffer
             "ajc" 'jupyter-connect-repl
             "ajr" 'jupyter-run-repl
+            "ajoo" 'jupyter/override-src-block-lang
+            "ajoO" 'jupyter/override-all-src-block-lang
+            "ajor" 'jupyter/restore-src-block-lang
+            "ajoR" 'jupyter/restore-all-src-block-lang
+            "ajos" 'org-babel-jupyter-scratch-buffer
             "ajs" 'jupyter-server-list-kernels
             )
           (spacemacs/set-leader-keys-for-major-mode 'jupyter-repl-mode
@@ -70,5 +77,35 @@
 
 (defun jupyter/post-init-company ()
   (spacemacs|add-company-backends :backends company-capf :modes jupyter-repl-mode))
+
+
+(defun jupyter/override-src-block-lang ()
+  "Apply org-babel-jupyter-override-src-block to the selected language "
+  (interactive)
+  (let ((lang (read-string "Override Language: ")))
+    (org-babel-jupyter-override-src-block lang)))
+
+(defun jupyter/restore-src-block-lang ()
+  "Apply org-babel-jupyter-restore-src-block to the selected language "
+  (interactive)
+  (let ((lang (read-string "Restore Language: ")))
+    (org-babel-jupyter-restore-src-block lang)))
+
+;; TODO these won't work. kernel name is not the same as babel language name
+;; need some table to match kernel-name to babel lang name
+;; also maybe define new babel langs based on kernels
+(defun jupyter/override-all-src-block-lang ()
+  "Apply org-babel-jupyter-override-src-block to all languages of
+installed kernels."
+  (interactive)
+  (let ((langs (mapcar 'car (jupyter-available-kernelspecs))))
+    (mapc 'org-babel-jupyter-override-src-block langs)))
+
+(defun jupyter/restore-all-src-block-lang ()
+  "Restore all babel languages overridden by jupyter/override-all-src-block-lang"
+  (interactive)
+  (let ((langs (mapcar 'car (jupyter-available-kernelspecs))))
+    (mapc 'org-babel-jupyter-restore-src-block langs)))
+
 
 ;;; packages.el ends here
