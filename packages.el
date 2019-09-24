@@ -63,9 +63,8 @@
               (kbd "M-j") 'jupyter-repl-forward-cell
               (kbd "M-k") 'jupyter-repl-backward-cell
               (kbd "C-s") 'jupyter-repl-scratch-buffer
-              (kbd "C-R") 'jupyter-repl-history-next-matching
-              (kbd "C-r") 'jupyter-repl-history-previous-matching))
-          ))
+              (kbd "C-R") 'isearch-forward
+              (kbd "C-r") 'isearch-backward))))
 
     (message "jupyter was not found in your path, jupyter is not loaded")))
 
