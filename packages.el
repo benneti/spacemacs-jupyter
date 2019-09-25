@@ -47,6 +47,7 @@
             "ajc" 'jupyter-connect-repl
             "ajr" 'jupyter-run-repl
             "ajs" 'jupyter-server-list-kernels
+            "ajt" 'use-jupyter-repl-mode
             )
           (spacemacs/set-leader-keys-for-major-mode 'jupyter-repl-mode
             "i" 'jupyter-inspect-at-point
