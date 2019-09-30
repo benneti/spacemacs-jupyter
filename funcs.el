@@ -30,6 +30,7 @@ Dependancies:
    (t
     (remove-hook 'after-revert-hook 'use-jupyter-repl-mode t))))
 
+;;;; use-jupyter-repl 
 (defun use-jupyter-repl ()
   "Checks whether a jupyter repl kernel is associated with this buffer.
 If there is, then set repl keybindings to use it. Otherwise, associate the
@@ -38,5 +39,11 @@ buffer with a repl. If no repl is running for the major-mode, ask to start one."
   (if (eq jupyter-current-client nil)
       (call-interactively 'jupyter-repl-associate-buffer)
     (call-interactively 'use-jupyter-repl-mode)))
+
+;;;; use-jupyter-eval-pop
+(defun use-jupyter-eval-pop (func &rest args)
+  (interactive)
+  (call-interactively func 'args)
+  (jupyter-repl-pop-to-buffer))
 
 ;;; funcs.el ends here

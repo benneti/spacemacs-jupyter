@@ -47,8 +47,7 @@
             "ajc" 'jupyter-connect-repl
             "ajr" 'jupyter-run-repl
             "ajs" 'jupyter-server-list-kernels
-            "ajt" 'use-jupyter-repl
-            )
+            "ajt" 'use-jupyter-repl)
           (spacemacs/set-leader-keys-for-major-mode 'jupyter-repl-mode
             "i" 'jupyter-inspect-at-point
             "l" 'jupyter-load-file
@@ -58,13 +57,13 @@
           (spacemacs/set-leader-keys-for-minor-mode 'use-jupyter-repl-mode
             "'"  'jupyter-run-repl
             "cc" 'jupyter-load-file
-            "cC" '(lambda (file) (interactive "f\file: ") (progn (jupyter-load-file file) (jupyter-repl-pop-to-buffer)))
-            "sB" '(lambda () (interactive) (progn (jupyter-eval-buffer (current-buffer)) (jupyter-repl-pop-to-buffer)))
+            "cC" '(lambda () (interactive) (use-jupyter-eval-pop 'jupyter-load-file))
+            "sB" '(lambda () (interactive) (use-jupyter-eval-pop 'jupyter-eval-buffer))
             "sb" 'jupyter-eval-buffer
-            "sF" '(lambda () (interactive) (progn (jupyter-eval-defun) (jupyter-repl-pop-to-buffer)))
+            "sF" '(lambda () (interactive) (use-jupyter-eval-pop 'jupyter-eval-defun))
             "sf" 'jupyter-eval-defun
             "si" 'jupyter-run-repl
-            "sR" '(lambda () (interactive) (progn (jupyter-eval-line-or-region 'null) (jupyter-repl-pop-to-buffer)))
+            "sR" '(lambda () (interactive) (use-jupyter-eval-pop 'jupyter-eval-line-or-region))
             "sr" 'jupyter-eval-line-or-region))
         :config
         (progn
