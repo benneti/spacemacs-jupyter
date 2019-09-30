@@ -33,6 +33,7 @@
   '(
     company
     jupyter
+    smartparens
     ))
 
 (defun jupyter/init-jupyter ()
@@ -46,14 +47,25 @@
             "ajc" 'jupyter-connect-repl
             "ajr" 'jupyter-run-repl
             "ajs" 'jupyter-server-list-kernels
-            "ajt" 'use-jupyter-repl-mode
+            "ajt" 'use-jupyter-repl
             )
           (spacemacs/set-leader-keys-for-major-mode 'jupyter-repl-mode
             "i" 'jupyter-inspect-at-point
             "l" 'jupyter-load-file
             "s" 'jupyter-repl-scratch-buffer
             "I" 'jupyter-repl-interrupt-kernel
-            "R" 'jupyter-repl-restart-kernel))
+            "R" 'jupyter-repl-restart-kernel)
+          (spacemacs/set-leader-keys-for-minor-mode 'use-jupyter-repl-mode
+            "'"  'jupyter-run-repl
+            "cc" 'jupyter-load-file
+            "cC" '(lambda (file) (interactive "f\file: ") (progn (jupyter-load-file file) (jupyter-repl-pop-to-buffer)))
+            "sB" '(lambda () (interactive) (progn (jupyter-eval-buffer (current-buffer)) (jupyter-repl-pop-to-buffer)))
+            "sb" 'jupyter-eval-buffer
+            "sF" '(lambda () (interactive) (progn (jupyter-eval-defun) (jupyter-repl-pop-to-buffer)))
+            "sf" 'jupyter-eval-defun
+            "si" 'jupyter-run-repl
+            "sR" '(lambda () (interactive) (progn (jupyter-eval-line-or-region 'null) (jupyter-repl-pop-to-buffer)))
+            "sr" 'jupyter-eval-line-or-region))
         :config
         (progn
           (when (eq dotspacemacs-editing-style 'vim)
@@ -64,13 +76,15 @@
               (kbd "M-j") 'jupyter-repl-forward-cell
               (kbd "M-k") 'jupyter-repl-backward-cell
               (kbd "C-s") 'jupyter-repl-scratch-buffer
-              (kbd "C-R") 'jupyter-repl-history-next-matching
-              (kbd "C-r") 'jupyter-repl-history-previous-matching))
-          ))
+              (kbd "C-R") 'isearch-forward
+              (kbd "C-r") 'isearch-backward))))
 
     (message "jupyter was not found in your path, jupyter is not loaded")))
 
 (defun jupyter/post-init-company ()
   (spacemacs|add-company-backends :backends company-capf :modes jupyter-repl-mode))
+
+(defun jupyter/post-init-smartparens ()
+  (add-hook 'jupyter-repl-mode-hook 'smartparens-mode))
 
 ;;; packages.el ends here
