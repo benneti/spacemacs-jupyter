@@ -64,9 +64,7 @@
             "sf" 'jupyter-eval-defun
             "si" 'jupyter-run-repl
             "sR" '(lambda () (interactive) (use-jupyter-eval-pop 'jupyter-eval-line-or-region))
-            "sr" 'jupyter-eval-line-or-region))
-        :config
-        (progn
+            "sr" 'jupyter-eval-line-or-region)
           (when (eq dotspacemacs-editing-style 'vim)
             (evil-define-key '(insert normal) jupyter-repl-mode-map
               (kbd "C-j") 'jupyter-repl-history-next

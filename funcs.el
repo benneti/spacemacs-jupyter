@@ -22,7 +22,7 @@ Dependancies:
 	Jupyter kernel corresponding to the major-mode language.
 		This needs to be installed on your system."
   :group 'jupyter-repl
-  :lighter "j-repl"
+  :lighter "jrepl"
   :init-value nil
   (cond
    (use-jupyter-repl-mode
@@ -37,8 +37,8 @@ If there is, then set repl keybindings to use it. Otherwise, associate the
 buffer with a repl. If no repl is running for the major-mode, ask to start one."
   (interactive)
   (if (eq jupyter-current-client nil)
-      (call-interactively 'jupyter-repl-associate-buffer)
-    (call-interactively 'use-jupyter-repl-mode)))
+      (call-interactively 'jupyter-repl-associate-buffer))
+  (call-interactively 'use-jupyter-repl-mode))
 
 ;;;; use-jupyter-eval-pop
 (defun use-jupyter-eval-pop (func &rest args)
