@@ -31,9 +31,13 @@
 
 (defconst jupyter-packages
   '(
+    org
     company
     jupyter
     smartparens
+    (ox-ipynb :location (recipe
+                         :fetcher github
+                         :repo "jkitchin/ox-ipynb"))
     ))
 
 (defun jupyter/init-jupyter ()
@@ -74,5 +78,15 @@
 
 (defun jupyter/post-init-smartparens ()
   (add-hook 'jupyter-repl-mode-hook 'smartparens-mode))
+
+(defun jupyter/post-init-org ()
+;;   ;; (with-eval-after-load 'org (jupyter/ox-ipynb-emacs-jupyter)))
+  (add-hook 'org-mode-hook #'jupyter/ox-ipynb-emacs-jupyter))
+
+(defun jupyter/init-ox-ipynb ()
+  (use-package ox-ipynb
+    :defer t
+    :after jupyter
+    ))
 
 ;;; packages.el ends here
