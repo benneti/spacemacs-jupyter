@@ -57,9 +57,7 @@
             "l" 'jupyter-load-file
             "s" 'jupyter-repl-scratch-buffer
             "I" 'jupyter-repl-interrupt-kernel
-            "R" 'jupyter-repl-restart-kernel))
-        :config
-        (progn
+            "R" 'jupyter-repl-restart-kernel)
           (when (eq dotspacemacs-editing-style 'vim)
             (evil-define-key '(insert normal) jupyter-repl-mode-map
               (kbd "C-j") 'jupyter-repl-history-next
@@ -70,7 +68,6 @@
               (kbd "C-s") 'jupyter-repl-scratch-buffer
               (kbd "C-R") 'isearch-forward
               (kbd "C-r") 'isearch-backward))))
-
     (message "jupyter was not found in your path, jupyter is not loaded")))
 
 (defun jupyter/post-init-company ()
