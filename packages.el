@@ -58,16 +58,16 @@
             "s" 'jupyter-repl-scratch-buffer
             "I" 'jupyter-repl-interrupt-kernel
             "R" 'jupyter-repl-restart-kernel)
-          (when (eq dotspacemacs-editing-style 'vim)
-            (evil-define-key '(insert normal) jupyter-repl-mode-map
-              (kbd "C-j") 'jupyter-repl-history-next
-              (kbd "C-k") 'jupyter-repl-history-previous
-              (kbd "C-l") 'jupyter-repl-clear-cells
-              (kbd "M-j") 'jupyter-repl-forward-cell
-              (kbd "M-k") 'jupyter-repl-backward-cell
-              (kbd "C-s") 'jupyter-repl-scratch-buffer
-              (kbd "C-R") 'isearch-forward
-              (kbd "C-r") 'isearch-backward))))
+          ;; TODO for some reason this does not work in hybrid mode
+          (evil-define-key '(insert normal emacs) jupyter-repl-mode-map
+            (kbd "C-j") 'jupyter-repl-history-next
+            (kbd "C-k") 'jupyter-repl-history-previous
+            (kbd "M-j") 'jupyter-repl-forward-cell
+            (kbd "M-k") 'jupyter-repl-backward-cell
+            (kbd "C-l") 'jupyter-repl-clear-cells
+            (kbd "C-s") 'jupyter-repl-scratch-buffer
+            (kbd "C-R") 'isearch-forward
+            (kbd "C-r") 'isearch-backward)))
     (message "jupyter was not found in your path, jupyter is not loaded")))
 
 (defun jupyter/post-init-company ()
