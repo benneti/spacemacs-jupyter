@@ -14,6 +14,7 @@
 ;;;; jupyter repl minor mode
 ;; (defvar use-jupyter-repl-mode nil)
 
+;;;###autoload
 (define-minor-mode use-jupyter-repl-mode
   "Minor mode that will use a jupyter-repl from package
 emacs-jupyter instead of the default repl.
@@ -30,7 +31,7 @@ Dependancies:
    (t
     (remove-hook 'after-revert-hook 'use-jupyter-repl-mode t))))
 
-;;;; use-jupyter-repl 
+;;;; use-jupyter-repl
 (defun use-jupyter-repl ()
   "Checks whether a jupyter repl kernel is associated with this buffer.
 If there is, then set repl keybindings to use it. Otherwise, associate the

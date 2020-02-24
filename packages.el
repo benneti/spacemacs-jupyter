@@ -69,7 +69,7 @@
             (evil-define-key '(insert normal) jupyter-repl-mode-map
               (kbd "C-j") 'jupyter-repl-history-next
               (kbd "C-k") 'jupyter-repl-history-previous
-              (kbd "C-l") 'jupyter-repl-clear-cells
+              ;; (kbd "C-l") 'jupyter-repl-clear-cells
               (kbd "M-j") 'jupyter-repl-forward-cell
               (kbd "M-k") 'jupyter-repl-backward-cell
               (kbd "C-s") 'jupyter-repl-scratch-buffer
