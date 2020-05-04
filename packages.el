@@ -83,7 +83,7 @@
 (defun jupyter/init-ox-ipynb ()
   (use-package ox-ipynb
     :defer t
-    :after jupyter
+    :after jupyter org
     ))
 
 ;;; packages.el ends here
