@@ -32,14 +32,18 @@
 (defconst jupyter-packages
   '(
     company
-    jupyter
+    (jupyter :location (recipe :fetcher file :path "~/.spacemacs.d/emacs-jupyter"))
+    ;; (jupyter :location local) 
+    ;; jupyter
     smartparens
+    websocket
+    zmq
     ))
-
 (defun jupyter/init-jupyter ()
   (if (executable-find "jupyter")
       (use-package jupyter
         :defer t
+        :demand t
         :init
         (progn
           (spacemacs/set-leader-keys
@@ -83,5 +87,13 @@
 
 (defun jupyter/post-init-smartparens ()
   (add-hook 'jupyter-repl-mode-hook 'smartparens-mode))
+
+(defun jupyter/init-websocket ()
+  (use-package websocket
+    :defer t))
+
+(defun jupyter/init-zmq ()
+  (use-package zmq
+    :defer t))
 
 ;;; packages.el ends here
