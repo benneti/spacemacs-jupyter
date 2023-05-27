@@ -32,13 +32,16 @@
 (defconst jupyter-packages
   '(
     company
-    (jupyter :location (recipe :fetcher file :path "~/.spacemacs.d/emacs-jupyter"))
+    ;; (jupyter :location (recipe :fetcher file :path "~/.spacemacs.d/emacs-jupyter"))
+    ;; upate may 27, 2023
+    (jupyter :Location (recipe :fetcher github :repo "emacs-jupyter/jupyter"))
     ;; (jupyter :location local) 
     ;; jupyter
     smartparens
     websocket
     zmq
     ))
+
 (defun jupyter/init-jupyter ()
   (if (executable-find "jupyter")
       (use-package jupyter
